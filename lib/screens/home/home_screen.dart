@@ -676,7 +676,14 @@ class _FeelItSection extends StatelessWidget {
                 .copyWith(height: 1.5),
           ),
           const SizedBox(height: 16),
-          ElevatedButton(onPressed: onOrderNow, child: const Text('Order Now')),
+          Row(
+            children: [
+              const ChefMascot(size: 72),
+              const SizedBox(width: 14),
+              ElevatedButton(
+                  onPressed: onOrderNow, child: const Text('Order Now')),
+            ],
+          ),
         ],
       ),
     );
