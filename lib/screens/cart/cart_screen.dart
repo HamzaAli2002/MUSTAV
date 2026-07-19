@@ -9,6 +9,7 @@ import '../../providers/connectivity_provider.dart';
 import '../../providers/location_provider.dart';
 import '../checkout/checkout_screen.dart';
 import '../location/location_picker_screen.dart';
+import '../../widgets/burger_illustration.dart';
 
 class CartScreen extends ConsumerWidget {
   const CartScreen({super.key});
@@ -23,15 +24,19 @@ class CartScreen extends ConsumerWidget {
     return Scaffold(
       backgroundColor: AppColors.cream,
       appBar: AppBar(
-        leading: IconButton(icon: const Icon(Icons.close), onPressed: () => Navigator.of(context).pop()),
+        leading: IconButton(
+            icon: const Icon(Icons.close),
+            onPressed: () => Navigator.of(context).pop()),
         title: Text(
           'YOUR CART${cartAsync.valueOrNull != null ? ' (${cartAsync.valueOrNull!.fold(0, (s, i) => s + i.quantity)})' : ''}',
           style: AppTheme.display(size: 18, color: AppColors.ink),
         ),
       ),
       body: cartAsync.when(
-        loading: () => const Center(child: CircularProgressIndicator(color: AppColors.red)),
-        error: (e, st) => const Center(child: Text('Could not load your cart.')),
+        loading: () => const Center(
+            child: CircularProgressIndicator(color: AppColors.red)),
+        error: (e, st) =>
+            const Center(child: Text('Could not load your cart.')),
         data: (items) {
           if (items.isEmpty) {
             return Center(
@@ -42,10 +47,14 @@ class CartScreen extends ConsumerWidget {
                     'https://mustav.vercel.app/images/general/empty-cart.png',
                     width: 96,
                     height: 96,
-                    errorBuilder: (c, e, s) => const Icon(Icons.shopping_bag_outlined, size: 64, color: AppColors.inkSoft),
+                    errorBuilder: (c, e, s) => const Icon(
+                        Icons.shopping_bag_outlined,
+                        size: 64,
+                        color: AppColors.inkSoft),
                   ),
                   const SizedBox(height: 12),
-                  Text('Hungry? Add items to start your order.', style: AppTheme.body(color: AppColors.inkSoft)),
+                  Text('Hungry? Add items to start your order.',
+                      style: AppTheme.body(color: AppColors.inkSoft)),
                 ],
               ),
             );
@@ -62,7 +71,8 @@ class CartScreen extends ConsumerWidget {
                   padding: const EdgeInsets.all(16),
                   itemCount: items.length,
                   separatorBuilder: (_, __) => const SizedBox(height: 10),
-                  itemBuilder: (context, index) => _CartLine(item: items[index]),
+                  itemBuilder: (context, index) =>
+                      _CartLine(item: items[index]),
                 ),
               ),
               Container(
@@ -77,20 +87,24 @@ class CartScreen extends ConsumerWidget {
                     children: [
                       InkWell(
                         onTap: () => Navigator.of(context).push(
-                          MaterialPageRoute(builder: (_) => const LocationPickerScreen()),
+                          MaterialPageRoute(
+                              builder: (_) => const LocationPickerScreen()),
                         ),
                         child: Row(
                           children: [
-                            const Icon(Icons.location_on_outlined, size: 18, color: AppColors.textSecondary),
+                            const Icon(Icons.location_on_outlined,
+                                size: 18, color: AppColors.textSecondary),
                             const SizedBox(width: 6),
                             Text(
                               selectedLocation != null
                                   ? 'Delivering from ${selectedLocation.city.label}'
                                   : 'Select a store location',
-                              style: const TextStyle(color: AppColors.textSecondary, fontSize: 13),
+                              style: const TextStyle(
+                                  color: AppColors.textSecondary, fontSize: 13),
                             ),
                             const Spacer(),
-                            const Icon(Icons.chevron_right, size: 18, color: AppColors.textSecondary),
+                            const Icon(Icons.chevron_right,
+                                size: 18, color: AppColors.textSecondary),
                           ],
                         ),
                       ),
@@ -105,7 +119,8 @@ class CartScreen extends ConsumerWidget {
                           padding: EdgeInsets.only(bottom: 10),
                           child: Text(
                             "You're offline — connect to place your order.",
-                            style: TextStyle(color: AppColors.warning, fontSize: 12),
+                            style: TextStyle(
+                                color: AppColors.warning, fontSize: 12),
                           ),
                         ),
                       SizedBox(
@@ -114,7 +129,8 @@ class CartScreen extends ConsumerWidget {
                           onPressed: (!isOnline || selectedLocation == null)
                               ? null
                               : () => Navigator.of(context).push(
-                                    MaterialPageRoute(builder: (_) => const CheckoutScreen()),
+                                    MaterialPageRoute(
+                                        builder: (_) => const CheckoutScreen()),
                                   ),
                           child: const Text('CHECKOUT'),
                         ),
@@ -141,31 +157,37 @@ class _CartLine extends ConsumerWidget {
 
     return Container(
       padding: const EdgeInsets.all(12),
-      decoration: BoxDecoration(color: AppColors.surface, borderRadius: BorderRadius.circular(14)),
+      decoration: BoxDecoration(
+          color: AppColors.surface, borderRadius: BorderRadius.circular(14)),
       child: Row(
         children: [
           ClipRRect(
             borderRadius: BorderRadius.circular(10),
-            child: Image.network(item.burger.imageUrl, width: 64, height: 64, fit: BoxFit.cover),
+            child: SizedBox(
+                width: 64, height: 64, child: BurgerIllustration(size: 50)),
           ),
           const SizedBox(width: 12),
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(item.burger.name, style: const TextStyle(fontWeight: FontWeight.w700)),
+                Text(item.burger.name,
+                    style: const TextStyle(fontWeight: FontWeight.w700)),
                 if (item.addOns.isNotEmpty)
                   Padding(
                     padding: const EdgeInsets.only(top: 2),
                     child: Text(
                       item.addOns.map((a) => a.name).join(', '),
-                      style: const TextStyle(fontSize: 11, color: AppColors.textSecondary),
+                      style: const TextStyle(
+                          fontSize: 11, color: AppColors.textSecondary),
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,
                     ),
                   ),
                 const SizedBox(height: 6),
-                Text('Rs. ${item.lineTotalRs}', style: const TextStyle(color: AppColors.accent, fontWeight: FontWeight.w700)),
+                Text('Rs. ${item.lineTotalRs}',
+                    style: const TextStyle(
+                        color: AppColors.accent, fontWeight: FontWeight.w700)),
               ],
             ),
           ),
@@ -175,20 +197,25 @@ class _CartLine extends ConsumerWidget {
                 children: [
                   IconButton(
                     visualDensity: VisualDensity.compact,
-                    onPressed: () => notifier.updateQuantity(item.cartItemId, item.quantity - 1),
+                    onPressed: () => notifier.updateQuantity(
+                        item.cartItemId, item.quantity - 1),
                     icon: const Icon(Icons.remove_circle_outline, size: 20),
                   ),
-                  Text('${item.quantity}', style: const TextStyle(fontWeight: FontWeight.w700)),
+                  Text('${item.quantity}',
+                      style: const TextStyle(fontWeight: FontWeight.w700)),
                   IconButton(
                     visualDensity: VisualDensity.compact,
-                    onPressed: () => notifier.updateQuantity(item.cartItemId, item.quantity + 1),
+                    onPressed: () => notifier.updateQuantity(
+                        item.cartItemId, item.quantity + 1),
                     icon: const Icon(Icons.add_circle_outline, size: 20),
                   ),
                 ],
               ),
               TextButton(
                 onPressed: () => notifier.removeItem(item.cartItemId),
-                style: TextButton.styleFrom(foregroundColor: AppColors.danger, padding: EdgeInsets.zero),
+                style: TextButton.styleFrom(
+                    foregroundColor: AppColors.danger,
+                    padding: EdgeInsets.zero),
                 child: const Text('Remove', style: TextStyle(fontSize: 12)),
               ),
             ],

@@ -1,10 +1,11 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../core/theme.dart';
+import '../../models/enums.dart';
 import '../../models/store_location.dart';
 import '../../providers/location_provider.dart';
+import '../../widgets/burger_illustration.dart';
 import '../../widgets/marquee_ticker.dart';
 import '../../widgets/scroll_reveal.dart';
 import '../../widgets/wave_divider.dart';
@@ -94,6 +95,46 @@ class HomeScreen extends ConsumerWidget {
   void _goToMenu(BuildContext context) {
     Navigator.of(context)
         .push(MaterialPageRoute(builder: (_) => const MenuScreen()));
+  }
+}
+
+class _ExperienceSection extends StatelessWidget {
+  const _ExperienceSection();
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 24),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const Text('EXPERIENCE',
+              style: TextStyle(
+                  color: AppColors.accent,
+                  fontWeight: FontWeight.w800,
+                  letterSpacing: 1.5,
+                  fontSize: 12)),
+          const SizedBox(height: 6),
+          const Text('food that feels good',
+              style: TextStyle(fontSize: 24, fontWeight: FontWeight.w900)),
+          const SizedBox(height: 18),
+          _FeatureCard(
+              emoji: '🔥',
+              title: 'BOLD FLAVOUR',
+              lines: const ['100% Organic', 'Zero Guilt', 'True Taste']),
+          const SizedBox(height: 12),
+          _FeatureCard(
+              emoji: '💪',
+              title: '450 kcal',
+              lines: const ['High Protein', 'Fresh Ingredients', 'Low Carb']),
+          const SizedBox(height: 12),
+          _FeatureCard(
+              emoji: '✨',
+              title: 'Pure Quality',
+              lines: const ['Every Layer', 'Packed With', 'Signature Flavor']),
+        ],
+      ),
+    );
   }
 }
 
@@ -190,13 +231,8 @@ class _HeroSection extends StatelessWidget {
         SizedBox(
           height: 560,
           width: double.infinity,
-          child: CachedNetworkImage(
-            imageUrl:
-                'https://images.unsplash.com/photo-1571091655789-405eb7a3a3a8?w=900&q=80',
-            fit: BoxFit.cover,
-            memCacheWidth: 900,
-            errorWidget: (c, u, e) => Container(color: AppColors.surfaceAlt),
-          ),
+          child: BurgerIllustration(
+              size: 420, backgroundColor: AppColors.surfaceAlt),
         ),
         Container(
           height: 560,
@@ -309,10 +345,10 @@ class _TopClassicSection extends StatelessWidget {
 }
 
 class _AboutCarousel extends StatelessWidget {
-  static const _images = [
-    'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=700&q=80',
-    'https://images.unsplash.com/photo-1541592106381-b31e9677c0e5?w=700&q=80',
-    'https://images.unsplash.com/photo-1552566626-52f8b828add9?w=700&q=80',
+  static const _tiles = [
+    (Icons.restaurant_menu, Color(0xFF6B4A2F)),
+    (Icons.local_dining, Color(0xFFF2B705)),
+    (Icons.storefront, Color(0xFF4E0018)),
   ];
 
   @override
@@ -321,59 +357,21 @@ class _AboutCarousel extends StatelessWidget {
       height: 220,
       child: PageView.builder(
         controller: PageController(viewportFraction: 0.82),
-        itemCount: _images.length,
-        itemBuilder: (context, index) => Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 8),
-          child: ClipRRect(
-            borderRadius: BorderRadius.circular(20),
-            child: CachedNetworkImage(
-              imageUrl: _images[index],
-              fit: BoxFit.cover,
-              memCacheWidth: 700,
-              errorWidget: (c, u, e) => Container(color: AppColors.surfaceAlt),
+        itemCount: _tiles.length,
+        itemBuilder: (context, index) {
+          final (icon, color) = _tiles[index];
+          return Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 8),
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(20),
+              child: Container(
+                color: color,
+                alignment: Alignment.center,
+                child: Icon(icon, color: Colors.white, size: 64),
+              ),
             ),
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-class _ExperienceSection extends StatelessWidget {
-  const _ExperienceSection();
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 24),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          const Text('EXPERIENCE',
-              style: TextStyle(
-                  color: AppColors.accent,
-                  fontWeight: FontWeight.w800,
-                  letterSpacing: 1.5,
-                  fontSize: 12)),
-          const SizedBox(height: 6),
-          const Text('food that feels good',
-              style: TextStyle(fontSize: 24, fontWeight: FontWeight.w900)),
-          const SizedBox(height: 18),
-          _FeatureCard(
-              emoji: '🔥',
-              title: 'BOLD FLAVOUR',
-              lines: const ['100% Organic', 'Zero Guilt', 'True Taste']),
-          const SizedBox(height: 12),
-          _FeatureCard(
-              emoji: '💪',
-              title: '450 kcal',
-              lines: const ['High Protein', 'Fresh Ingredients', 'Low Carb']),
-          const SizedBox(height: 12),
-          _FeatureCard(
-              emoji: '✨',
-              title: 'Pure Quality',
-              lines: const ['Every Layer', 'Packed With', 'Signature Flavor']),
-        ],
+          );
+        },
       ),
     );
   }
@@ -418,10 +416,10 @@ class _FeatureCard extends StatelessWidget {
 
 class _IngredientsRow extends StatelessWidget {
   static const _items = [
-    ('Lettuce', 'https://loremflickr.com/350/350/lettuce?lock=305'),
-    ('Tomato', 'https://loremflickr.com/350/350/tomato?lock=306'),
-    ('Cheese', 'https://loremflickr.com/350/350/cheese?lock=307'),
-    ('Patty', 'https://loremflickr.com/350/350/patty?lock=308'),
+    ('Lettuce', Icons.eco, Color(0xFF7EA32A)),
+    ('Tomato', Icons.circle, Color(0xFFD32F2F)),
+    ('Cheese', Icons.square, Color(0xFFF2B705)),
+    ('Patty', Icons.circle, Color(0xFF6B4A2F)),
   ];
 
   @override
@@ -434,23 +432,20 @@ class _IngredientsRow extends StatelessWidget {
         itemCount: _items.length,
         separatorBuilder: (_, __) => const SizedBox(width: 12),
         itemBuilder: (context, index) {
-          final (name, url) = _items[index];
+          final (name, icon, color) = _items[index];
           return ClipRRect(
             borderRadius: BorderRadius.circular(14),
             child: Stack(
               children: [
-                CachedNetworkImage(
-                    imageUrl: url,
-                    width: 110,
-                    height: 140,
-                    fit: BoxFit.cover,
-                    memCacheWidth: 300),
+                IngredientTile(icon: icon, color: color, size: 110),
                 Positioned(
                   left: 8,
                   bottom: 8,
                   child: Text(name,
                       style: const TextStyle(
-                          fontWeight: FontWeight.w700, fontSize: 12)),
+                          fontWeight: FontWeight.w700,
+                          fontSize: 12,
+                          color: Colors.white)),
                 ),
               ],
             ),
@@ -534,34 +529,19 @@ class _LocationCard extends ConsumerWidget {
         child: Stack(
           fit: StackFit.expand,
           children: [
-            CachedNetworkImage(
-                imageUrl: store.imageUrl,
-                fit: BoxFit.cover,
-                memCacheWidth: 400),
-            Container(
-              decoration: BoxDecoration(
-                gradient: LinearGradient(
-                  begin: Alignment.topCenter,
-                  end: Alignment.bottomCenter,
-                  colors: [Colors.transparent, Colors.black.withOpacity(0.75)],
-                ),
-              ),
-            ),
-            Positioned(
-              left: 10,
-              bottom: 10,
-              right: 10,
-              child: Text(
-                store.city.label.toUpperCase(),
-                style:
-                    const TextStyle(fontWeight: FontWeight.w900, fontSize: 14),
-              ),
-            ),
+            CityTile(color: _cityColor(store.city)),
           ],
         ),
       ),
     );
   }
+
+  Color _cityColor(CityName city) => switch (city) {
+        CityName.lahore => const Color(0xFF6B4A2F),
+        CityName.islamabad => const Color(0xFF4E0018),
+        CityName.rawalpindi => const Color(0xFFED6F2F),
+        CityName.multan => const Color(0xFF7EA32A),
+      };
 }
 
 class _StoryRow extends StatelessWidget {
@@ -569,27 +549,32 @@ class _StoryRow extends StatelessWidget {
     (
       'Freshly Greens',
       'Grilled to perfection — juicy, smoky, unforgettable.',
-      'https://loremflickr.com/350/350/lettuce?lock=305'
+      Icons.eco,
+      Color(0xFF7EA32A)
     ),
     (
       'Juicy Tomatoes',
       'Sun-ripened tomatoes that bring natural sweetness and balance.',
-      'https://loremflickr.com/350/350/tomato?lock=306'
+      Icons.circle,
+      Color(0xFFD32F2F)
     ),
     (
       'Creamy Cheese',
       'Rich, creamy cheese that melts into every bite.',
-      'https://loremflickr.com/350/350/cheese?lock=307'
+      Icons.square,
+      Color(0xFFF2B705)
     ),
     (
       'Perfect Patty',
       'Grilled to perfection — juicy, smoky, unforgettable.',
-      'https://loremflickr.com/350/350/patty?lock=308'
+      Icons.circle,
+      Color(0xFF6B4A2F)
     ),
     (
       'Artisan Bun',
       'Soft, toasted buns crafted to hold everything together.',
-      'https://loremflickr.com/350/350/bun?lock=309'
+      Icons.bakery_dining,
+      Color(0xFFE79A3F)
     ),
   ];
 
@@ -612,7 +597,7 @@ class _StoryRow extends StatelessWidget {
             itemCount: _items.length,
             separatorBuilder: (_, __) => const SizedBox(width: 12),
             itemBuilder: (context, index) {
-              final (title, desc, url) = _items[index];
+              final (title, desc, icon, color) = _items[index];
               return SizedBox(
                 width: 160,
                 child: Column(
@@ -620,12 +605,8 @@ class _StoryRow extends StatelessWidget {
                   children: [
                     ClipRRect(
                       borderRadius: BorderRadius.circular(14),
-                      child: CachedNetworkImage(
-                          imageUrl: url,
-                          width: 160,
-                          height: 120,
-                          fit: BoxFit.cover,
-                          memCacheWidth: 350),
+                      child:
+                          IngredientTile(icon: icon, color: color, size: 120),
                     ),
                     const SizedBox(height: 8),
                     Text(title,
