@@ -294,7 +294,14 @@ class _TopClassicSection extends StatelessWidget {
             style: TextStyle(color: AppColors.textSecondary, height: 1.5),
           ),
           const SizedBox(height: 16),
-          ElevatedButton(onPressed: onOrderNow, child: const Text('Order Now')),
+          Row(
+            children: [
+              const ChefMascot(size: 72),
+              const SizedBox(width: 14),
+              ElevatedButton(
+                  onPressed: onOrderNow, child: const Text('Order Now')),
+            ],
+          ),
         ],
       ),
     );
