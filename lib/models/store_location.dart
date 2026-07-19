@@ -49,7 +49,7 @@ class LocationSeed {
       address: 'MUSTAV Flagship, Gulberg III, Lahore',
       latitude: 31.5204,
       longitude: 74.3587,
-      imageUrl: 'https://picsum.photos/seed/mustav-lahore/700/700',
+      imageUrl: 'https://loremflickr.com/700/700/lahore,pakistan?lock=201',
       tagline: 'Where tradition meets taste — our flagship kitchen.',
     ),
     StoreLocation(
@@ -57,7 +57,7 @@ class LocationSeed {
       address: 'MUSTAV Blue Area, Islamabad',
       latitude: 33.6844,
       longitude: 73.0479,
-      imageUrl: 'https://picsum.photos/seed/mustav-islamabad/700/700',
+      imageUrl: 'https://loremflickr.com/700/700/islamabad,pakistan?lock=202',
       tagline: 'Capital flavors, crafted with precision.',
     ),
     StoreLocation(
@@ -65,7 +65,7 @@ class LocationSeed {
       address: 'MUSTAV Saddar, Rawalpindi',
       latitude: 33.5651,
       longitude: 73.0169,
-      imageUrl: 'https://picsum.photos/seed/mustav-rawalpindi/700/700',
+      imageUrl: 'https://loremflickr.com/700/700/rawalpindi,pakistan?lock=203',
       tagline: 'Bold street-style smash burgers.',
     ),
     StoreLocation(
@@ -73,7 +73,7 @@ class LocationSeed {
       address: 'MUSTAV Cantt, Multan',
       latitude: 30.1575,
       longitude: 71.5249,
-      imageUrl: 'https://picsum.photos/seed/mustav-multan/700/700',
+      imageUrl: 'https://loremflickr.com/700/700/multan,pakistan?lock=204',
       tagline: 'Southern hospitality in every bite.',
     ),
   ];

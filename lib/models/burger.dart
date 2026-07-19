@@ -76,7 +76,7 @@ class MenuSeed {
     Burger(
       id: 'classic-smash',
       name: 'Classic Smash',
-      imageUrl: 'https://picsum.photos/seed/mustav-classic-smash/800/600',
+      imageUrl: 'https://loremflickr.com/800/600/burger,cheeseburger?lock=101',
       priceRs: 850,
       prepTimeMinLow: 10,
       prepTimeMinHigh: 12,
@@ -91,7 +91,7 @@ class MenuSeed {
     Burger(
       id: 'spicy-jalapeno',
       name: 'Spicy Jalapeño',
-      imageUrl: 'https://picsum.photos/seed/mustav-spicy-jalapeno/800/600',
+      imageUrl: 'https://loremflickr.com/800/600/burger,spicy?lock=102',
       priceRs: 950,
       prepTimeMinLow: 12,
       prepTimeMinHigh: 14,
@@ -105,7 +105,7 @@ class MenuSeed {
     Burger(
       id: 'bacon-cheese',
       name: 'Bacon Cheese',
-      imageUrl: 'https://picsum.photos/seed/mustav-bacon-cheese/800/600',
+      imageUrl: 'https://loremflickr.com/800/600/burger,bacon?lock=103',
       priceRs: 1100,
       prepTimeMinLow: 12,
       prepTimeMinHigh: 15,
@@ -119,7 +119,7 @@ class MenuSeed {
     Burger(
       id: 'veggie-delight',
       name: 'Veggie Delight',
-      imageUrl: 'https://picsum.photos/seed/mustav-veggie-delight/800/600',
+      imageUrl: 'https://loremflickr.com/800/600/burger,veggie?lock=104',
       priceRs: 750,
       prepTimeMinLow: 10,
       prepTimeMinHigh: 12,
@@ -133,7 +133,7 @@ class MenuSeed {
     Burger(
       id: 'bbq-ranch',
       name: 'BBQ Ranch',
-      imageUrl: 'https://picsum.photos/seed/mustav-bbq-ranch/800/600',
+      imageUrl: 'https://loremflickr.com/800/600/burger,bbq?lock=105',
       priceRs: 1000,
       prepTimeMinLow: 12,
       prepTimeMinHigh: 14,
@@ -147,7 +147,7 @@ class MenuSeed {
     Burger(
       id: 'mushroom-swiss',
       name: 'Mushroom Swiss',
-      imageUrl: 'https://picsum.photos/seed/mustav-mushroom-swiss/800/600',
+      imageUrl: 'https://loremflickr.com/800/600/burger,mushroom?lock=106',
       priceRs: 1050,
       prepTimeMinLow: 12,
       prepTimeMinHigh: 14,

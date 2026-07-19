@@ -188,7 +188,7 @@ class _HeroSection extends StatelessWidget {
           height: 560,
           width: double.infinity,
           child: CachedNetworkImage(
-            imageUrl: 'https://picsum.photos/seed/mustav-hero/900/700',
+            imageUrl: 'https://loremflickr.com/900/700/burger,cheeseburger?lock=301',
             fit: BoxFit.cover,
             memCacheWidth: 900,
             errorWidget: (c, u, e) => Container(color: AppColors.surfaceAlt),
@@ -299,9 +299,9 @@ class _TopClassicSection extends StatelessWidget {
 
 class _AboutCarousel extends StatelessWidget {
   static const _images = [
-    'https://picsum.photos/seed/mustav-chef/700/700',
-    'https://picsum.photos/seed/mustav-cheese-closeup/700/700',
-    'https://picsum.photos/seed/mustav-restaurant/700/700',
+    'https://loremflickr.com/700/700/chef,cooking?lock=302',
+    'https://loremflickr.com/700/700/cheese,melting?lock=303',
+    'https://loremflickr.com/700/700/restaurant,interior?lock=304',
   ];
 
   @override
@@ -407,10 +407,10 @@ class _FeatureCard extends StatelessWidget {
 
 class _IngredientsRow extends StatelessWidget {
   static const _items = [
-    ('Lettuce', 'https://picsum.photos/seed/mustav-lettuce/350/350'),
-    ('Tomato', 'https://picsum.photos/seed/mustav-tomato/350/350'),
-    ('Cheese', 'https://picsum.photos/seed/mustav-cheese/350/350'),
-    ('Patty', 'https://picsum.photos/seed/mustav-patty/350/350'),
+    ('Lettuce', 'https://loremflickr.com/350/350/lettuce?lock=305'),
+    ('Tomato', 'https://loremflickr.com/350/350/tomato?lock=306'),
+    ('Cheese', 'https://loremflickr.com/350/350/cheese?lock=307'),
+    ('Patty', 'https://loremflickr.com/350/350/patty?lock=308'),
   ];
 
   @override
@@ -558,27 +558,27 @@ class _StoryRow extends StatelessWidget {
     (
       'Freshly Greens',
       'Grilled to perfection — juicy, smoky, unforgettable.',
-      'https://picsum.photos/seed/mustav-lettuce/350/350'
+      'https://loremflickr.com/350/350/lettuce?lock=305'
     ),
     (
       'Juicy Tomatoes',
       'Sun-ripened tomatoes that bring natural sweetness and balance.',
-      'https://picsum.photos/seed/mustav-tomato/350/350'
+      'https://loremflickr.com/350/350/tomato?lock=306'
     ),
     (
       'Creamy Cheese',
       'Rich, creamy cheese that melts into every bite.',
-      'https://picsum.photos/seed/mustav-cheese/350/350'
+      'https://loremflickr.com/350/350/cheese?lock=307'
     ),
     (
       'Perfect Patty',
       'Grilled to perfection — juicy, smoky, unforgettable.',
-      'https://picsum.photos/seed/mustav-patty/350/350'
+      'https://loremflickr.com/350/350/patty?lock=308'
     ),
     (
       'Artisan Bun',
       'Soft, toasted buns crafted to hold everything together.',
-      'https://picsum.photos/seed/mustav-bun/350/350'
+      'https://loremflickr.com/350/350/bun?lock=309'
     ),
   ];
 
