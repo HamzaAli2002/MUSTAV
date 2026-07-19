@@ -7,6 +7,8 @@ import '../../models/store_location.dart';
 import '../../providers/location_provider.dart';
 import '../../widgets/marquee_ticker.dart';
 import '../../widgets/scroll_reveal.dart';
+import '../../widgets/wave_divider.dart';
+import '../../widgets/chef_mascot.dart';
 import '../../widgets/cart_badge.dart';
 import '../contact/contact_screen.dart';
 import '../location/location_picker_screen.dart';
@@ -61,16 +63,17 @@ class HomeScreen extends ConsumerWidget {
           ScrollReveal(
               child: _TopClassicSection(onOrderNow: () => _goToMenu(context))),
           const SizedBox(height: 28),
-          VisibleOnceReveal(child: _AboutCarousel()),
+          ScrollReveal(child: _AboutCarousel()),
           const SizedBox(height: 36),
-          VisibleOnceReveal(child: const _ExperienceSection()),
+          ScrollReveal(child: const _ExperienceSection()),
           const SizedBox(height: 32),
-          VisibleOnceReveal(child: _IngredientsRow()),
+          ScrollReveal(child: _IngredientsRow()),
           const SizedBox(height: 36),
-          VisibleOnceReveal(child: const _LocationsSection()),
+          ScrollReveal(child: const _LocationsSection()),
           const SizedBox(height: 36),
-          VisibleOnceReveal(child: _StoryRow()),
-          const SizedBox(height: 24),
+          ScrollReveal(child: _StoryRow()),
+          const SizedBox(height: 8),
+          const WaveDivider(color: AppColors.maroon, height: 44),
           const MarqueeTicker(
             text: 'MUSTAV • BURGERS •',
             backgroundColor: AppColors.maroon,
@@ -188,7 +191,8 @@ class _HeroSection extends StatelessWidget {
           height: 560,
           width: double.infinity,
           child: CachedNetworkImage(
-            imageUrl: 'https://loremflickr.com/900/700/burger,cheeseburger?lock=301',
+            imageUrl:
+                'https://loremflickr.com/900/700/burger,cheeseburger?lock=301',
             fit: BoxFit.cover,
             memCacheWidth: 900,
             errorWidget: (c, u, e) => Container(color: AppColors.surfaceAlt),
