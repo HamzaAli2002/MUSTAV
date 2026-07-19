@@ -192,7 +192,7 @@ class _HeroSection extends StatelessWidget {
           width: double.infinity,
           child: CachedNetworkImage(
             imageUrl:
-                'https://loremflickr.com/900/700/burger,cheeseburger?lock=301',
+                'https://images.unsplash.com/photo-1571091655789-405eb7a3a3a8?w=900&q=80',
             fit: BoxFit.cover,
             memCacheWidth: 900,
             errorWidget: (c, u, e) => Container(color: AppColors.surfaceAlt),
@@ -310,9 +310,9 @@ class _TopClassicSection extends StatelessWidget {
 
 class _AboutCarousel extends StatelessWidget {
   static const _images = [
-    'https://loremflickr.com/700/700/chef,cooking?lock=302',
-    'https://loremflickr.com/700/700/cheese,melting?lock=303',
-    'https://loremflickr.com/700/700/restaurant,interior?lock=304',
+    'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=700&q=80',
+    'https://images.unsplash.com/photo-1541592106381-b31e9677c0e5?w=700&q=80',
+    'https://images.unsplash.com/photo-1552566626-52f8b828add9?w=700&q=80',
   ];
 
   @override
