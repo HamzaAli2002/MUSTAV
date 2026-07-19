@@ -22,7 +22,8 @@ class ScrollReveal extends StatefulWidget {
   State<ScrollReveal> createState() => _ScrollRevealState();
 }
 
-class _ScrollRevealState extends State<ScrollReveal> with SingleTickerProviderStateMixin {
+class _ScrollRevealState extends State<ScrollReveal>
+    with SingleTickerProviderStateMixin {
   late final AnimationController _controller;
   late final Animation<double> _opacity;
   late final Animation<Offset> _slide;
@@ -33,7 +34,8 @@ class _ScrollRevealState extends State<ScrollReveal> with SingleTickerProviderSt
     _controller = AnimationController(vsync: this, duration: widget.duration);
     _opacity = CurvedAnimation(parent: _controller, curve: Curves.easeOut);
     _slide = Tween<Offset>(begin: const Offset(0, 0.08), end: Offset.zero)
-        .animate(CurvedAnimation(parent: _controller, curve: Curves.easeOutCubic));
+        .animate(
+            CurvedAnimation(parent: _controller, curve: Curves.easeOutCubic));
     Future.delayed(widget.delay, () {
       if (mounted) _controller.forward();
     });
@@ -69,6 +71,21 @@ class _VisibleOnceRevealState extends State<VisibleOnceReveal> {
   bool _revealed = false;
   final _key = GlobalKey();
 
+  @override
+  void initState() {
+    super.initState();
+    // Fix: pehle sirf scroll event pe visibility check hoti thi. Agar
+    // ancestor rebuild ho (jaise location change hone pe), ye state fresh
+    // ho jaati thi (_revealed=false) aur content invisible reh jata tha
+    // jab tak dobara scroll na ho. Ab first frame ke turant baad bhi check
+    // hoti hai.
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (mounted && !_revealed && _checkVisible()) {
+        setState(() => _revealed = true);
+      }
+    });
+  }
+
   bool _checkVisible() {
     final ctx = _key.currentContext;
     if (ctx == null) return false;
@@ -90,7 +107,9 @@ class _VisibleOnceRevealState extends State<VisibleOnceReveal> {
       },
       child: Container(
         key: _key,
-        child: _revealed || _checkVisible() ? ScrollReveal(child: widget.child) : Opacity(opacity: 0, child: widget.child),
+        child: _revealed || _checkVisible()
+            ? ScrollReveal(child: widget.child)
+            : Opacity(opacity: 0, child: widget.child),
       ),
     );
   }
