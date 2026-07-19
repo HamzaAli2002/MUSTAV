@@ -76,7 +76,7 @@ class MenuSeed {
     Burger(
       id: 'classic-smash',
       name: 'Classic Smash',
-      imageUrl: 'https://loremflickr.com/800/600/burger,cheeseburger?lock=101',
+      imageUrl: 'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=800&q=80',
       priceRs: 850,
       prepTimeMinLow: 10,
       prepTimeMinHigh: 12,
@@ -91,7 +91,7 @@ class MenuSeed {
     Burger(
       id: 'spicy-jalapeno',
       name: 'Spicy Jalapeño',
-      imageUrl: 'https://loremflickr.com/800/600/burger,spicy?lock=102',
+      imageUrl: 'https://images.unsplash.com/photo-1553979459-d2229ba7433b?w=800&q=80',
       priceRs: 950,
       prepTimeMinLow: 12,
       prepTimeMinHigh: 14,
@@ -105,7 +105,7 @@ class MenuSeed {
     Burger(
       id: 'bacon-cheese',
       name: 'Bacon Cheese',
-      imageUrl: 'https://loremflickr.com/800/600/burger,bacon?lock=103',
+      imageUrl: 'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=800&q=80',
       priceRs: 1100,
       prepTimeMinLow: 12,
       prepTimeMinHigh: 15,
@@ -119,7 +119,7 @@ class MenuSeed {
     Burger(
       id: 'veggie-delight',
       name: 'Veggie Delight',
-      imageUrl: 'https://loremflickr.com/800/600/burger,veggie?lock=104',
+      imageUrl: 'https://images.unsplash.com/photo-1520072959219-c595dc870360?w=800&q=80',
       priceRs: 750,
       prepTimeMinLow: 10,
       prepTimeMinHigh: 12,
@@ -133,7 +133,7 @@ class MenuSeed {
     Burger(
       id: 'bbq-ranch',
       name: 'BBQ Ranch',
-      imageUrl: 'https://loremflickr.com/800/600/burger,bbq?lock=105',
+      imageUrl: 'https://images.unsplash.com/photo-1571091718767-18b5b1457add?w=800&q=80',
       priceRs: 1000,
       prepTimeMinLow: 12,
       prepTimeMinHigh: 14,
@@ -147,7 +147,7 @@ class MenuSeed {
     Burger(
       id: 'mushroom-swiss',
       name: 'Mushroom Swiss',
-      imageUrl: 'https://loremflickr.com/800/600/burger,mushroom?lock=106',
+      imageUrl: 'https://images.unsplash.com/photo-1550317138-10000687a72b?w=800&q=80',
       priceRs: 1050,
       prepTimeMinLow: 12,
       prepTimeMinHigh: 14,
