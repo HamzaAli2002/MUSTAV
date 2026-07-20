@@ -16,6 +16,10 @@ class Burger extends Equatable {
   final int calories;
   final int proteinG;
   final String description;
+  /// A real photo fetched opportunistically from the Foodish API and
+  /// cached locally. Null until successfully resolved — the UI always
+  /// falls back to the guaranteed BurgerIllustration when this is null.
+  final String? resolvedPhotoUrl;
 
   const Burger({
     required this.id,
@@ -30,9 +34,26 @@ class Burger extends Equatable {
     required this.calories,
     required this.proteinG,
     required this.description,
+    this.resolvedPhotoUrl,
   });
 
   String get prepTimeLabel => '$prepTimeMinLow–$prepTimeMinHigh min';
+
+  Burger copyWith({String? resolvedPhotoUrl}) => Burger(
+        id: id,
+        name: name,
+        imageUrl: imageUrl,
+        priceRs: priceRs,
+        prepTimeMinLow: prepTimeMinLow,
+        prepTimeMinHigh: prepTimeMinHigh,
+        spiceLevel: spiceLevel,
+        bunType: bunType,
+        pattyType: pattyType,
+        calories: calories,
+        proteinG: proteinG,
+        description: description,
+        resolvedPhotoUrl: resolvedPhotoUrl ?? this.resolvedPhotoUrl,
+      );
 
   factory Burger.fromMap(Map<String, Object?> map) => Burger(
         id: map['id'] as String,
@@ -47,6 +68,7 @@ class Burger extends Equatable {
         calories: map['calories'] as int,
         proteinG: map['proteinG'] as int,
         description: map['description'] as String,
+        resolvedPhotoUrl: map['resolvedPhotoUrl'] as String?,
       );
 
   Map<String, Object?> toMap() => {
@@ -62,6 +84,7 @@ class Burger extends Equatable {
         'calories': calories,
         'proteinG': proteinG,
         'description': description,
+        'resolvedPhotoUrl': resolvedPhotoUrl,
       };
 
   @override
@@ -76,7 +99,7 @@ class MenuSeed {
     Burger(
       id: 'classic-smash',
       name: 'Classic Smash',
-      imageUrl: 'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=800&q=80',
+      imageUrl: 'https://loremflickr.com/800/600/burger,cheeseburger?lock=101',
       priceRs: 850,
       prepTimeMinLow: 10,
       prepTimeMinHigh: 12,
@@ -91,7 +114,7 @@ class MenuSeed {
     Burger(
       id: 'spicy-jalapeno',
       name: 'Spicy Jalapeño',
-      imageUrl: 'https://images.unsplash.com/photo-1553979459-d2229ba7433b?w=800&q=80',
+      imageUrl: 'https://loremflickr.com/800/600/burger,spicy?lock=102',
       priceRs: 950,
       prepTimeMinLow: 12,
       prepTimeMinHigh: 14,
@@ -105,7 +128,7 @@ class MenuSeed {
     Burger(
       id: 'bacon-cheese',
       name: 'Bacon Cheese',
-      imageUrl: 'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=800&q=80',
+      imageUrl: 'https://loremflickr.com/800/600/burger,bacon?lock=103',
       priceRs: 1100,
       prepTimeMinLow: 12,
       prepTimeMinHigh: 15,
@@ -119,7 +142,7 @@ class MenuSeed {
     Burger(
       id: 'veggie-delight',
       name: 'Veggie Delight',
-      imageUrl: 'https://images.unsplash.com/photo-1520072959219-c595dc870360?w=800&q=80',
+      imageUrl: 'https://loremflickr.com/800/600/burger,vegetarian?lock=104',
       priceRs: 750,
       prepTimeMinLow: 10,
       prepTimeMinHigh: 12,
@@ -133,7 +156,7 @@ class MenuSeed {
     Burger(
       id: 'bbq-ranch',
       name: 'BBQ Ranch',
-      imageUrl: 'https://images.unsplash.com/photo-1571091718767-18b5b1457add?w=800&q=80',
+      imageUrl: 'https://loremflickr.com/800/600/burger,bbq?lock=105',
       priceRs: 1000,
       prepTimeMinLow: 12,
       prepTimeMinHigh: 14,
@@ -147,7 +170,7 @@ class MenuSeed {
     Burger(
       id: 'mushroom-swiss',
       name: 'Mushroom Swiss',
-      imageUrl: 'https://images.unsplash.com/photo-1550317138-10000687a72b?w=800&q=80',
+      imageUrl: 'https://loremflickr.com/800/600/burger,mushroom?lock=106',
       priceRs: 1050,
       prepTimeMinLow: 12,
       prepTimeMinHigh: 14,
