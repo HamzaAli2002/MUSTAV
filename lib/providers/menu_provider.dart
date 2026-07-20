@@ -5,13 +5,26 @@ import '../models/burger.dart';
 import '../models/enums.dart';
 import 'connectivity_provider.dart';
 
-final menuRepositoryProvider = Provider<MenuRepository>((ref) => MenuRepository());
+final menuRepositoryProvider =
+    Provider<MenuRepository>((ref) => MenuRepository());
 
 /// The full menu, cache-first, refreshed opportunistically when online.
 final menuProvider = FutureProvider.autoDispose<List<Burger>>((ref) async {
   final isOnlineAsync = await ref.watch(isOnlineProvider.future);
   final repo = ref.watch(menuRepositoryProvider);
-  return repo.getMenu(isOnline: isOnlineAsync);
+  final burgers = await repo.getMenu(isOnline: isOnlineAsync);
+
+  if (isOnlineAsync) {
+    final missingPhotos =
+        burgers.where((b) => b.resolvedPhotoUrl == null).toList();
+    if (missingPhotos.isNotEmpty) {
+      repo.resolveMissingPhotos(missingPhotos).then((_) {
+        if (ref.mounted) ref.invalidateSelf();
+      });
+    }
+  }
+
+  return burgers;
 });
 
 /// Filter chip selections — spice level and patty type. Re-filters the
@@ -49,17 +62,22 @@ class MenuFilterNotifier extends Notifier<MenuFilterState> {
   }
 }
 
-final menuFilterProvider = NotifierProvider<MenuFilterNotifier, MenuFilterState>(MenuFilterNotifier.new);
+final menuFilterProvider =
+    NotifierProvider<MenuFilterNotifier, MenuFilterState>(
+        MenuFilterNotifier.new);
 
 /// The menu after filters are applied — pure, synchronous, instant.
-final filteredMenuProvider = Provider.autoDispose<AsyncValue<List<Burger>>>((ref) {
+final filteredMenuProvider =
+    Provider.autoDispose<AsyncValue<List<Burger>>>((ref) {
   final menuAsync = ref.watch(menuProvider);
   final filter = ref.watch(menuFilterProvider);
 
   return menuAsync.whenData((menu) {
     return menu.where((b) {
-      if (filter.spiceLevel != null && b.spiceLevel != filter.spiceLevel) return false;
-      if (filter.pattyType != null && b.pattyType != filter.pattyType) return false;
+      if (filter.spiceLevel != null && b.spiceLevel != filter.spiceLevel)
+        return false;
+      if (filter.pattyType != null && b.pattyType != filter.pattyType)
+        return false;
       return true;
     }).toList();
   });
