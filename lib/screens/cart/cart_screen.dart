@@ -164,7 +164,12 @@ class _CartLine extends ConsumerWidget {
           ClipRRect(
             borderRadius: BorderRadius.circular(10),
             child: SizedBox(
-                width: 64, height: 64, child: BurgerIllustration(size: 50)),
+                width: 64,
+                height: 64,
+                child: BurgerPhoto(
+                    burger: item.burger,
+                    illustrationSize: 50,
+                    memCacheWidth: 200)),
           ),
           const SizedBox(width: 12),
           Expanded(
