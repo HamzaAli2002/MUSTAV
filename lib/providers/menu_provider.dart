@@ -19,7 +19,11 @@ final menuProvider = FutureProvider.autoDispose<List<Burger>>((ref) async {
         burgers.where((b) => b.resolvedPhotoUrl == null).toList();
     if (missingPhotos.isNotEmpty) {
       repo.resolveMissingPhotos(missingPhotos).then((_) {
-        if (ref.mounted) ref.invalidateSelf();
+        try {
+          ref.invalidateSelf();
+        } catch (_) {
+          // Provider/widget already disposed — nothing to refresh.
+        }
       });
     }
   }
