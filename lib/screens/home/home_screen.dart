@@ -26,8 +26,7 @@ class HomeScreen extends ConsumerWidget {
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
-        title: const Text('MUSTAV',
-            style: TextStyle(fontWeight: FontWeight.w900, letterSpacing: 2)),
+        title: const Text('MUSTAV', style: TextStyle(fontWeight: FontWeight.w900, letterSpacing: 2)),
         actions: [
           TextButton.icon(
             onPressed: () => Navigator.of(context).push(
@@ -36,10 +35,8 @@ class HomeScreen extends ConsumerWidget {
             icon: const Icon(Icons.location_on_outlined, size: 18),
             label: Consumer(
               builder: (context, ref, _) {
-                final selectedLocation =
-                    ref.watch(selectedLocationProvider).valueOrNull?.location;
-                return Text(selectedLocation?.city.label ?? 'Select store',
-                    style: const TextStyle(fontSize: 12));
+                final selectedLocation = ref.watch(selectedLocationProvider).valueOrNull?.location;
+                return Text(selectedLocation?.city.label ?? 'Select store', style: const TextStyle(fontSize: 12));
               },
             ),
           ),
@@ -55,14 +52,9 @@ class HomeScreen extends ConsumerWidget {
           const MarqueeTicker(
             text: 'SMASHED • FRESH • BOLD • CRAVE •',
             backgroundColor: AppColors.red,
-            style: TextStyle(
-                color: Colors.white,
-                fontWeight: FontWeight.w800,
-                fontSize: 14,
-                letterSpacing: 1.2),
+            style: TextStyle(color: Colors.white, fontWeight: FontWeight.w800, fontSize: 14, letterSpacing: 1.2),
           ),
-          ScrollReveal(
-              child: _TopClassicSection(onOrderNow: () => _goToMenu(context))),
+          ScrollReveal(child: _TopClassicSection(onOrderNow: () => _goToMenu(context))),
           const SizedBox(height: 28),
           ScrollReveal(child: _AboutCarousel()),
           const SizedBox(height: 36),
@@ -78,14 +70,9 @@ class HomeScreen extends ConsumerWidget {
           const MarqueeTicker(
             text: 'MUSTAV • BURGERS •',
             backgroundColor: AppColors.maroon,
-            style: TextStyle(
-                color: AppColors.yellow,
-                fontWeight: FontWeight.w800,
-                fontSize: 14,
-                letterSpacing: 1.2),
+            style: TextStyle(color: AppColors.yellow, fontWeight: FontWeight.w800, fontSize: 14, letterSpacing: 1.2),
           ),
-          VisibleOnceReveal(
-              child: _FeelItSection(onOrderNow: () => _goToMenu(context))),
+          ScrollReveal(child: _FeelItSection(onOrderNow: () => _goToMenu(context))),
           const _Footer(),
         ],
       ),
@@ -93,48 +80,7 @@ class HomeScreen extends ConsumerWidget {
   }
 
   void _goToMenu(BuildContext context) {
-    Navigator.of(context)
-        .push(MaterialPageRoute(builder: (_) => const MenuScreen()));
-  }
-}
-
-class _ExperienceSection extends StatelessWidget {
-  const _ExperienceSection();
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 24),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          const Text('EXPERIENCE',
-              style: TextStyle(
-                  color: AppColors.accent,
-                  fontWeight: FontWeight.w800,
-                  letterSpacing: 1.5,
-                  fontSize: 12)),
-          const SizedBox(height: 6),
-          const Text('food that feels good',
-              style: TextStyle(fontSize: 24, fontWeight: FontWeight.w900)),
-          const SizedBox(height: 18),
-          _FeatureCard(
-              emoji: '🔥',
-              title: 'BOLD FLAVOUR',
-              lines: const ['100% Organic', 'Zero Guilt', 'True Taste']),
-          const SizedBox(height: 12),
-          _FeatureCard(
-              emoji: '💪',
-              title: '450 kcal',
-              lines: const ['High Protein', 'Fresh Ingredients', 'Low Carb']),
-          const SizedBox(height: 12),
-          _FeatureCard(
-              emoji: '✨',
-              title: 'Pure Quality',
-              lines: const ['Every Layer', 'Packed With', 'Signature Flavor']),
-        ],
-      ),
-    );
+    Navigator.of(context).push(MaterialPageRoute(builder: (_) => const MenuScreen()));
   }
 }
 
@@ -147,8 +93,7 @@ class _NavDrawer extends StatelessWidget {
           onTap: onTap,
           child: Padding(
             padding: const EdgeInsets.symmetric(vertical: 10),
-            child: Text(label,
-                style: AppTheme.display(size: 22, color: Colors.white)),
+            child: Text(label, style: AppTheme.display(size: 22, color: Colors.white)),
           ),
         );
 
@@ -165,17 +110,12 @@ class _NavDrawer extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Container(
-                    padding:
-                        const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                    padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
                     decoration: BoxDecoration(
                       border: Border.all(color: Colors.white.withOpacity(0.6)),
                       borderRadius: BorderRadius.circular(20),
                     ),
-                    child: Text('Est. 2024 — Pakistan',
-                        style: AppTheme.body(
-                            size: 11,
-                            color: Colors.white,
-                            weight: FontWeight.w600)),
+                    child: Text('Est. 2024 — Pakistan', style: AppTheme.body(size: 11, color: Colors.white, weight: FontWeight.w600)),
                   ),
                   IconButton(
                     onPressed: () => Navigator.of(context).pop(),
@@ -187,30 +127,25 @@ class _NavDrawer extends StatelessWidget {
               navTile('Home', () => Navigator.of(context).pop()),
               navTile('Burgers', () {
                 Navigator.of(context).pop();
-                Navigator.of(context).push(
-                    MaterialPageRoute(builder: (_) => const MenuScreen()));
+                Navigator.of(context).push(MaterialPageRoute(builder: (_) => const MenuScreen()));
               }),
               navTile('Our Spices', () {
                 Navigator.of(context).pop();
-                Navigator.of(context).push(
-                    MaterialPageRoute(builder: (_) => const SpicesScreen()));
+                Navigator.of(context).push(MaterialPageRoute(builder: (_) => const SpicesScreen()));
               }),
               navTile('Locations', () {
                 Navigator.of(context).pop();
-                Navigator.of(context).push(MaterialPageRoute(
-                    builder: (_) => const LocationPickerScreen()));
+                Navigator.of(context).push(MaterialPageRoute(builder: (_) => const LocationPickerScreen()));
               }),
               navTile('Contact', () {
                 Navigator.of(context).pop();
-                Navigator.of(context).push(
-                    MaterialPageRoute(builder: (_) => const ContactScreen()));
+                Navigator.of(context).push(MaterialPageRoute(builder: (_) => const ContactScreen()));
               }),
               const Spacer(),
               Padding(
                 padding: const EdgeInsets.only(bottom: 24),
                 child: Text('Crafted for your cravings · est. 2024',
-                    style: AppTheme.body(
-                        size: 11, color: Colors.white.withOpacity(0.8))),
+                    style: AppTheme.body(size: 11, color: Colors.white.withOpacity(0.8))),
               ),
             ],
           ),
@@ -231,8 +166,7 @@ class _HeroSection extends StatelessWidget {
         SizedBox(
           height: 560,
           width: double.infinity,
-          child: BurgerIllustration(
-              size: 420, backgroundColor: AppColors.surfaceAlt),
+          child: BurgerIllustration(size: 420, backgroundColor: AppColors.surfaceAlt),
         ),
         Container(
           height: 560,
@@ -240,10 +174,7 @@ class _HeroSection extends StatelessWidget {
             gradient: LinearGradient(
               begin: Alignment.topCenter,
               end: Alignment.bottomCenter,
-              colors: [
-                AppColors.background.withOpacity(0.35),
-                AppColors.background
-              ],
+              colors: [AppColors.background.withOpacity(0.35), AppColors.background],
             ),
           ),
         ),
@@ -256,22 +187,19 @@ class _HeroSection extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   Container(
-                    padding:
-                        const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                    padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
                     decoration: BoxDecoration(
                       border: Border.all(color: Colors.white.withOpacity(0.3)),
                       borderRadius: BorderRadius.circular(20),
                     ),
-                    child: const Text('Est. 2024 — Pakistan',
-                        style: TextStyle(fontSize: 11, letterSpacing: 1)),
+                    child: const Text('Est. 2024 — Pakistan', style: TextStyle(fontSize: 11, letterSpacing: 1)),
                   ),
                   const SizedBox(height: 14),
                   const _StackedHeadline(top: 'SMASHED', bottom: 'FRESH'),
                   const SizedBox(height: 6),
                   const _StackedHeadline(top: 'BOLD', bottom: 'FLAVOR'),
                   const SizedBox(height: 18),
-                  ElevatedButton(
-                      onPressed: onOrderNow, child: const Text('Order Now')),
+                  ElevatedButton(onPressed: onOrderNow, child: const Text('Order Now')),
                   const SizedBox(height: 20),
                 ],
               ),
@@ -293,12 +221,8 @@ class _StackedHeadline extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(top,
-            style: AppTheme.display(size: 42, color: Colors.white)
-                .copyWith(height: 0.95)),
-        Text(bottom,
-            style: AppTheme.display(size: 42, color: AppColors.yellow)
-                .copyWith(height: 0.95)),
+        Text(top, style: AppTheme.display(size: 42, color: Colors.white).copyWith(height: 0.95)),
+        Text(bottom, style: AppTheme.display(size: 42, color: AppColors.yellow).copyWith(height: 0.95)),
       ],
     );
   }
@@ -315,15 +239,9 @@ class _TopClassicSection extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Text('TOP CLASSIC',
-              style: TextStyle(
-                  color: AppColors.accent,
-                  fontWeight: FontWeight.w800,
-                  letterSpacing: 1.5,
-                  fontSize: 12)),
+          const Text('TOP CLASSIC', style: TextStyle(color: AppColors.accent, fontWeight: FontWeight.w800, letterSpacing: 1.5, fontSize: 12)),
           const SizedBox(height: 6),
-          const Text('juicy cheesy fully Loaded',
-              style: TextStyle(fontSize: 26, fontWeight: FontWeight.w900)),
+          const Text('juicy cheesy fully Loaded', style: TextStyle(fontSize: 26, fontWeight: FontWeight.w900)),
           const SizedBox(height: 10),
           const Text(
             'MUSTAV is back and bolder than ever. Honoring our rich roots, we bring you the ultimate smashed experience — fully loaded, hot, and crafted fresh.',
@@ -334,8 +252,7 @@ class _TopClassicSection extends StatelessWidget {
             children: [
               const ChefMascot(size: 72),
               const SizedBox(width: 14),
-              ElevatedButton(
-                  onPressed: onOrderNow, child: const Text('Order Now')),
+              ElevatedButton(onPressed: onOrderNow, child: const Text('Order Now')),
             ],
           ),
         ],
@@ -377,19 +294,42 @@ class _AboutCarousel extends StatelessWidget {
   }
 }
 
+class _ExperienceSection extends StatelessWidget {
+  const _ExperienceSection();
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 24),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const Text('EXPERIENCE', style: TextStyle(color: AppColors.accent, fontWeight: FontWeight.w800, letterSpacing: 1.5, fontSize: 12)),
+          const SizedBox(height: 6),
+          const Text('food that feels good', style: TextStyle(fontSize: 24, fontWeight: FontWeight.w900)),
+          const SizedBox(height: 18),
+          _FeatureCard(emoji: '🔥', title: 'BOLD FLAVOUR', lines: const ['100% Organic', 'Zero Guilt', 'True Taste']),
+          const SizedBox(height: 12),
+          _FeatureCard(emoji: '💪', title: '450 kcal', lines: const ['High Protein', 'Fresh Ingredients', 'Low Carb']),
+          const SizedBox(height: 12),
+          _FeatureCard(emoji: '✨', title: 'Pure Quality', lines: const ['Every Layer', 'Packed With', 'Signature Flavor']),
+        ],
+      ),
+    );
+  }
+}
+
 class _FeatureCard extends StatelessWidget {
   final String emoji;
   final String title;
   final List<String> lines;
-  const _FeatureCard(
-      {required this.emoji, required this.title, required this.lines});
+  const _FeatureCard({required this.emoji, required this.title, required this.lines});
 
   @override
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.all(16),
-      decoration: BoxDecoration(
-          color: AppColors.surface, borderRadius: BorderRadius.circular(16)),
+      decoration: BoxDecoration(color: AppColors.surface, borderRadius: BorderRadius.circular(16)),
       child: Row(
         children: [
           Text(emoji, style: const TextStyle(fontSize: 28)),
@@ -398,13 +338,9 @@ class _FeatureCard extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(title,
-                    style: const TextStyle(
-                        fontWeight: FontWeight.w800, fontSize: 15)),
+                Text(title, style: const TextStyle(fontWeight: FontWeight.w800, fontSize: 15)),
                 const SizedBox(height: 4),
-                Text(lines.join(' · '),
-                    style: const TextStyle(
-                        color: AppColors.textSecondary, fontSize: 12)),
+                Text(lines.join(' · '), style: const TextStyle(color: AppColors.textSecondary, fontSize: 12)),
               ],
             ),
           ),
@@ -441,11 +377,7 @@ class _IngredientsRow extends StatelessWidget {
                 Positioned(
                   left: 8,
                   bottom: 8,
-                  child: Text(name,
-                      style: const TextStyle(
-                          fontWeight: FontWeight.w700,
-                          fontSize: 12,
-                          color: Colors.white)),
+                  child: Text(name, style: const TextStyle(fontWeight: FontWeight.w700, fontSize: 12, color: Colors.white)),
                 ),
               ],
             ),
@@ -468,15 +400,9 @@ class _LocationsSection extends ConsumerWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Text('TAKE AWAY',
-              style: TextStyle(
-                  color: AppColors.accent,
-                  fontWeight: FontWeight.w800,
-                  letterSpacing: 1.5,
-                  fontSize: 12)),
+          const Text('TAKE AWAY', style: TextStyle(color: AppColors.accent, fontWeight: FontWeight.w800, letterSpacing: 1.5, fontSize: 12)),
           const SizedBox(height: 6),
-          const Text('quality that travels with you',
-              style: TextStyle(fontSize: 22, fontWeight: FontWeight.w900)),
+          const Text('quality that travels with you', style: TextStyle(fontSize: 22, fontWeight: FontWeight.w900)),
           const SizedBox(height: 10),
           const Text(
             'Freshly packed smash burgers, ready to go wherever you crave. From our flat-top to any corner of Pakistan.',
@@ -484,10 +410,7 @@ class _LocationsSection extends ConsumerWidget {
           ),
           const SizedBox(height: 16),
           storesAsync.when(
-            loading: () => const SizedBox(
-                height: 160,
-                child: Center(
-                    child: CircularProgressIndicator(color: AppColors.accent))),
+            loading: () => const SizedBox(height: 160, child: Center(child: CircularProgressIndicator(color: AppColors.accent))),
             error: (e, st) => const SizedBox.shrink(),
             data: (stores) => GridView.builder(
               shrinkWrap: true,
@@ -499,8 +422,7 @@ class _LocationsSection extends ConsumerWidget {
                 childAspectRatio: 0.95,
               ),
               itemCount: stores.length,
-              itemBuilder: (context, index) =>
-                  _LocationCard(store: stores[index]),
+              itemBuilder: (context, index) => _LocationCard(store: stores[index]),
             ),
           ),
         ],
@@ -520,8 +442,7 @@ class _LocationCard extends ConsumerWidget {
       onTap: () async {
         await ref.read(selectedLocationProvider.notifier).selectManually(store);
         if (context.mounted) {
-          Navigator.of(context)
-              .push(MaterialPageRoute(builder: (_) => const MenuScreen()));
+          Navigator.of(context).push(MaterialPageRoute(builder: (_) => const MenuScreen()));
         }
       },
       child: ClipRRect(
@@ -530,6 +451,24 @@ class _LocationCard extends ConsumerWidget {
           fit: StackFit.expand,
           children: [
             CityTile(color: _cityColor(store.city)),
+            Container(
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomCenter,
+                  colors: [Colors.transparent, Colors.black.withOpacity(0.75)],
+                ),
+              ),
+            ),
+            Positioned(
+              left: 10,
+              bottom: 10,
+              right: 10,
+              child: Text(
+                store.city.label.toUpperCase(),
+                style: const TextStyle(fontWeight: FontWeight.w900, fontSize: 14),
+              ),
+            ),
           ],
         ),
       ),
@@ -546,36 +485,11 @@ class _LocationCard extends ConsumerWidget {
 
 class _StoryRow extends StatelessWidget {
   static const _items = [
-    (
-      'Freshly Greens',
-      'Grilled to perfection — juicy, smoky, unforgettable.',
-      Icons.eco,
-      Color(0xFF7EA32A)
-    ),
-    (
-      'Juicy Tomatoes',
-      'Sun-ripened tomatoes that bring natural sweetness and balance.',
-      Icons.circle,
-      Color(0xFFD32F2F)
-    ),
-    (
-      'Creamy Cheese',
-      'Rich, creamy cheese that melts into every bite.',
-      Icons.square,
-      Color(0xFFF2B705)
-    ),
-    (
-      'Perfect Patty',
-      'Grilled to perfection — juicy, smoky, unforgettable.',
-      Icons.circle,
-      Color(0xFF6B4A2F)
-    ),
-    (
-      'Artisan Bun',
-      'Soft, toasted buns crafted to hold everything together.',
-      Icons.bakery_dining,
-      Color(0xFFE79A3F)
-    ),
+    ('Freshly Greens', 'Grilled to perfection — juicy, smoky, unforgettable.', Icons.eco, Color(0xFF7EA32A)),
+    ('Juicy Tomatoes', 'Sun-ripened tomatoes that bring natural sweetness and balance.', Icons.circle, Color(0xFFD32F2F)),
+    ('Creamy Cheese', 'Rich, creamy cheese that melts into every bite.', Icons.square, Color(0xFFF2B705)),
+    ('Perfect Patty', 'Grilled to perfection — juicy, smoky, unforgettable.', Icons.circle, Color(0xFF6B4A2F)),
+    ('Artisan Bun', 'Soft, toasted buns crafted to hold everything together.', Icons.bakery_dining, Color(0xFFE79A3F)),
   ];
 
   @override
@@ -585,8 +499,7 @@ class _StoryRow extends StatelessWidget {
       children: [
         const Padding(
           padding: EdgeInsets.symmetric(horizontal: 24),
-          child: Text('A story in every bite.',
-              style: TextStyle(fontSize: 22, fontWeight: FontWeight.w900)),
+          child: Text('A story in every bite.', style: TextStyle(fontSize: 22, fontWeight: FontWeight.w900)),
         ),
         const SizedBox(height: 12),
         SizedBox(
@@ -605,19 +518,12 @@ class _StoryRow extends StatelessWidget {
                   children: [
                     ClipRRect(
                       borderRadius: BorderRadius.circular(14),
-                      child:
-                          IngredientTile(icon: icon, color: color, size: 120),
+                      child: IngredientTile(icon: icon, color: color, size: 120),
                     ),
                     const SizedBox(height: 8),
-                    Text(title,
-                        style: const TextStyle(
-                            fontWeight: FontWeight.w700, fontSize: 13)),
+                    Text(title, style: const TextStyle(fontWeight: FontWeight.w700, fontSize: 13)),
                     const SizedBox(height: 3),
-                    Text(desc,
-                        style: const TextStyle(
-                            color: AppColors.textSecondary, fontSize: 11),
-                        maxLines: 3,
-                        overflow: TextOverflow.ellipsis),
+                    Text(desc, style: const TextStyle(color: AppColors.textSecondary, fontSize: 11), maxLines: 3, overflow: TextOverflow.ellipsis),
                   ],
                 ),
               );
@@ -641,28 +547,20 @@ class _FeelItSection extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text('FEEL IT',
-              style: AppTheme.body(
-                      size: 12,
-                      color: AppColors.yellow,
-                      weight: FontWeight.w800)
-                  .copyWith(letterSpacing: 1.5)),
+          Text('FEEL IT', style: AppTheme.body(size: 12, color: AppColors.yellow, weight: FontWeight.w800).copyWith(letterSpacing: 1.5)),
           const SizedBox(height: 6),
-          Text('feel the Change',
-              style: AppTheme.display(size: 26, color: Colors.white)),
+          Text('feel the Change', style: AppTheme.display(size: 26, color: Colors.white)),
           const SizedBox(height: 10),
           Text(
             'Smashed for the bold, built for the hungry. Dive into a legendary craft experience where every crispy edge and juicy layer rules.',
-            style: AppTheme.body(color: Colors.white.withOpacity(0.8), size: 13)
-                .copyWith(height: 1.5),
+            style: AppTheme.body(color: Colors.white.withOpacity(0.8), size: 13).copyWith(height: 1.5),
           ),
           const SizedBox(height: 16),
           Row(
             children: [
               const ChefMascot(size: 72),
               const SizedBox(width: 14),
-              ElevatedButton(
-                  onPressed: onOrderNow, child: const Text('Order Now')),
+              ElevatedButton(onPressed: onOrderNow, child: const Text('Order Now')),
             ],
           ),
         ],
@@ -680,9 +578,7 @@ class _Footer extends ConsumerWidget {
           onTap: onTap,
           child: Padding(
             padding: const EdgeInsets.symmetric(vertical: 4),
-            child: Text(label,
-                style: AppTheme.body(
-                    size: 13, color: Colors.white.withOpacity(0.85))),
+            child: Text(label, style: AppTheme.body(size: 13, color: Colors.white.withOpacity(0.85))),
           ),
         );
 
@@ -692,65 +588,35 @@ class _Footer extends ConsumerWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text('MUSTAV',
-              style: AppTheme.display(size: 24, color: Colors.white)),
+          Text('MUSTAV', style: AppTheme.display(size: 24, color: Colors.white)),
           const SizedBox(height: 4),
-          Text('Crafted for your cravings · est. 2024',
-              style: AppTheme.body(
-                  size: 12, color: Colors.white.withOpacity(0.7))),
+          Text('Crafted for your cravings · est. 2024', style: AppTheme.body(size: 12, color: Colors.white.withOpacity(0.7))),
           const SizedBox(height: 20),
-          Text('NAVIGATE',
-              style: AppTheme.body(
-                      size: 12,
-                      color: AppColors.yellow,
-                      weight: FontWeight.w800)
-                  .copyWith(letterSpacing: 1)),
+          Text('NAVIGATE', style: AppTheme.body(size: 12, color: AppColors.yellow, weight: FontWeight.w800).copyWith(letterSpacing: 1)),
           const SizedBox(height: 4),
-          navLink('Home',
-              () => Navigator.of(context).popUntil((route) => route.isFirst)),
-          navLink(
-              'Burgers',
-              () => Navigator.of(context)
-                  .push(MaterialPageRoute(builder: (_) => const MenuScreen()))),
-          navLink(
-              'Spices',
-              () => Navigator.of(context).push(
-                  MaterialPageRoute(builder: (_) => const SpicesScreen()))),
-          navLink(
-              'Contact',
-              () => Navigator.of(context).push(
-                  MaterialPageRoute(builder: (_) => const ContactScreen()))),
+          navLink('Home', () => Navigator.of(context).popUntil((route) => route.isFirst)),
+          navLink('Burgers', () => Navigator.of(context).push(MaterialPageRoute(builder: (_) => const MenuScreen()))),
+          navLink('Spices', () => Navigator.of(context).push(MaterialPageRoute(builder: (_) => const SpicesScreen()))),
+          navLink('Contact', () => Navigator.of(context).push(MaterialPageRoute(builder: (_) => const ContactScreen()))),
           const SizedBox(height: 20),
-          Text('LOCATIONS',
-              style: AppTheme.body(
-                      size: 12,
-                      color: AppColors.yellow,
-                      weight: FontWeight.w800)
-                  .copyWith(letterSpacing: 1)),
+          Text('LOCATIONS', style: AppTheme.body(size: 12, color: AppColors.yellow, weight: FontWeight.w800).copyWith(letterSpacing: 1)),
           const SizedBox(height: 4),
           Builder(
             builder: (context) {
               final storesAsync = ref.watch(storesProvider);
               return storesAsync.when(
                 loading: () => Text('Lahore\nIslamabad\nRawalpindi\nMultan',
-                    style: AppTheme.body(
-                            size: 13, color: Colors.white.withOpacity(0.85))
-                        .copyWith(height: 1.8)),
+                    style: AppTheme.body(size: 13, color: Colors.white.withOpacity(0.85)).copyWith(height: 1.8)),
                 error: (e, st) => Text('Lahore\nIslamabad\nRawalpindi\nMultan',
-                    style: AppTheme.body(
-                            size: 13, color: Colors.white.withOpacity(0.85))
-                        .copyWith(height: 1.8)),
+                    style: AppTheme.body(size: 13, color: Colors.white.withOpacity(0.85)).copyWith(height: 1.8)),
                 data: (stores) => Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     for (final store in stores)
                       navLink(store.city.label, () async {
-                        await ref
-                            .read(selectedLocationProvider.notifier)
-                            .selectManually(store);
+                        await ref.read(selectedLocationProvider.notifier).selectManually(store);
                         if (context.mounted) {
-                          Navigator.of(context).push(MaterialPageRoute(
-                              builder: (_) => const MenuScreen()));
+                          Navigator.of(context).push(MaterialPageRoute(builder: (_) => const MenuScreen()));
                         }
                       }),
                   ],
@@ -759,20 +625,11 @@ class _Footer extends ConsumerWidget {
             },
           ),
           const SizedBox(height: 20),
-          Text('OWNER',
-              style: AppTheme.body(
-                      size: 12,
-                      color: AppColors.yellow,
-                      weight: FontWeight.w800)
-                  .copyWith(letterSpacing: 1)),
+          Text('OWNER', style: AppTheme.body(size: 12, color: AppColors.yellow, weight: FontWeight.w800).copyWith(letterSpacing: 1)),
           const SizedBox(height: 4),
-          Text('Mustafa',
-              style: AppTheme.body(
-                  size: 13, color: Colors.white.withOpacity(0.85))),
+          Text('Mustafa', style: AppTheme.body(size: 13, color: Colors.white.withOpacity(0.85))),
           const SizedBox(height: 24),
-          Text('© 2026 MUSTAV — All rights reserved',
-              style: AppTheme.body(
-                  size: 11, color: Colors.white.withOpacity(0.5))),
+          Text('© 2026 MUSTAV — All rights reserved', style: AppTheme.body(size: 11, color: Colors.white.withOpacity(0.5))),
         ],
       ),
     );
