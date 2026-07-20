@@ -38,8 +38,11 @@ class _ProductDetailScreenState extends ConsumerState<ProductDetailScreen> {
             pinned: true,
             backgroundColor: AppColors.background,
             flexibleSpace: FlexibleSpaceBar(
-              background: BurgerIllustration(
-                  size: 220, backgroundColor: AppColors.surfaceAlt),
+              background: BurgerPhoto(
+                  burger: burger,
+                  illustrationSize: 220,
+                  backgroundColor: AppColors.surfaceAlt,
+                  memCacheWidth: 900),
             ),
           ),
           SliverToBoxAdapter(
