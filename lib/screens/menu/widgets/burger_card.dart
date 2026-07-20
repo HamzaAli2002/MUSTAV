@@ -49,7 +49,10 @@ class BurgerCard extends StatelessWidget {
               children: [
                 AspectRatio(
                   aspectRatio: 16 / 10,
-                  child: BurgerIllustration(size: 140),
+                  child: BurgerPhoto(
+                      burger: burger,
+                      illustrationSize: 140,
+                      memCacheWidth: 800),
                 ),
                 Positioned(
                   top: 10,
